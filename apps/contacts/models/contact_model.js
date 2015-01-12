@@ -24,7 +24,17 @@ Contacts.Contact = SC.Record.extend(
 
   // Each contact has only one group
 
-  group:SC.Record.toOne('Contacts.Group', {inverse: 'contacts'})
+  group:SC.Record.toOne('Contacts.Group', {inverse: 'contacts'}),
+
+
+fullName: function(){
+
+	var firstName = this.get('firstName'),
+	lastName = this.get('lastName');
+
+	return [firstName, lastName].compact().join(' ');}.property()
 
 
 });
+
+

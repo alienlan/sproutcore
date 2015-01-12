@@ -18,7 +18,7 @@ Contacts.Contact.FIXTURES = [
     firstName: 'Brian',
     lastName: 'Mintun',
     telNumber: '8313322407',
-    description: 'Me!',
+    description: 'This is my contact!',
     group: 'family'
 
   },

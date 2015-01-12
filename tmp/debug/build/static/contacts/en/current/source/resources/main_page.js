@@ -37,7 +37,10 @@ Contacts.mainPage = SC.Page.design({
       layout: {top: 32},
       childViews: ['groupsPanel','contactsPanel','detailPanel'],
 
-      // The list of groups and group control buttons
+      
+    ///////////////////////////////////////////////////////////
+    //          GROUPS PANEL
+    // The list of groups and group control buttons
     
       groupsPanel: SC.View.design(SC.SplitChild, {
         minimumSize: 140,
@@ -48,6 +51,11 @@ Contacts.mainPage = SC.Page.design({
 
             layout: {bottom: 32},
             contentView: SC.ListView.design({
+
+              // Display the name of each group in the list
+
+              contentValueKey: 'name',
+
               // The content for this list is contained in Contacts.groupsController.
 
               contentBinding: 'Contacts.groupsController.arrangedObjects',
@@ -81,7 +89,9 @@ Contacts.mainPage = SC.Page.design({
           })
       }),
 
-      //The list of contacts for the group and contact control buttons
+    ///////////////////////////////////////////////////////////
+    //          CONTACTS PANEL
+    //The list of contacts for the group and contact control buttons
 
       contactsPanel: SC.View.design(SC.SplitChild, {
         minimumSize:140,
@@ -93,6 +103,11 @@ Contacts.mainPage = SC.Page.design({
 
           layout: { bottom: 32 },
           contentView: SC.ListView.design ({
+          //Display the full name of each contact in the list
+
+            contentValueKey: 'fullName',
+
+
 
             // The contents of this list is containined in Contacts.contactsController
             contentBinding: 'Contacts.contactsController.arrangedObjects',
@@ -128,6 +143,9 @@ Contacts.mainPage = SC.Page.design({
 
     }),
 
+
+    ///////////////////////////////////////////////////////////
+    //          DETAILS PANEL
     // The details of the selected contact
 
       detailPanel: SC.View.design(SC.SplitChild,{
@@ -140,20 +158,20 @@ Contacts.mainPage = SC.Page.design({
 
           layout: {left: 20, top: 20, height: 120, width: 120},
           scale: SC.BEST_FIT,
-          value: '/static/sproutcore/foundation/en/current/source/resources/images/sproutcore-128.png?1418322897'
+          //value: '/static/sproutcore/foundation/en/current/source/resources/images/sproutcore-128.png?1418322897'
+          valueBinding: 'Contacts.contactController.imageURI'
         }),
 
         fullName: SC.LabelView.design({
           layout: {left: 160, top: 50, height: 25, width: 150},
-          value: "Brian Mintun"
-
+          //value: "Brian Mintun"
+          valueBinding: 'Contacts.contactController.fullName'
         }),
 
         telNumber: SC.LabelView.design({
-
           layout: {left: 160, top: 75, height: 25, width: 100},
-          value: "(831)332-2407"
-
+          //value: "(831)332-2407"
+          valueBinding: 'Contacts.contactController.telNumber'
         }),
 
         description: SC.TextFieldView.design({
@@ -161,9 +179,8 @@ Contacts.mainPage = SC.Page.design({
           isTextArea: true,
           layout: { left: 20, top: 160, bottom: 52, right: 20
           },
-          value: "An idiot who will never figure this out."
-
-
+          //value: "An idiot who will never figure this out."
+          valueBinding: 'Contacts.contactController.description'
         }),
 
         controlBar: SC.ToolbarView.design({
